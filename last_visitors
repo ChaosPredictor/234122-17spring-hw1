@@ -1,5 +1,12 @@
 #1/bin/bash
 
-while read line; do
-				echo $line
-done < "$1"
+a="their is"
+b="not"
+if [[ -d "$1" ]]; then
+	from="$1"/visitors.txt			
+	while read line; do
+		echo $line
+	done < $from
+else
+	echo $b			
+fi
