@@ -4,9 +4,14 @@ a="their is"
 b="not"
 if [[ -d "$1" ]]; then
 	from="$1"/visitors.txt			
+	#read visitors < $from
+	`sort -nrk2 $from | sort -sk3 | uniq -2 | sort -nrk2 > temp`
+	#echo ${e[*]} 
+	#visitors=`sort -k3 $from`
+	#echo ${visitors[0]}
 	while read line; do
 		echo $line
-	done < $from
+	done < `sort -nrk2 $from | sort -sk3 | uniq -2 | sort -nrk2`
 else
 	echo $b			
 fi
