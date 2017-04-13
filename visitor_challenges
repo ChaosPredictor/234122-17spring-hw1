@@ -2,14 +2,8 @@
 
 function xyz {
 	while read -a line; do
-		#echo ${line[1]}
 		search "visit id: ${line[1]}" "$1"/challenges/*.chg 
-		#echo $tmp
 	done 
-}
-
-function returnOverallTime {
-	echo "$3"
 }
 
 function zyx {
@@ -18,31 +12,13 @@ function zyx {
 		while read line; do
 			tmp=${line[0]}	
 			if [[ $tmp == "overall time:"* ]]; then 
-				#echo ${line[0]}
-				#echo ${tmp[0]} | cut -d" " -f3
 				if (( `echo ${tmp[0]} | cut -d" " -f3` < "$1" )); then
 					wol="Winner"
 				fi	
-				#returnOverallTime $tmp
-				#val=cut -d" " -f3 $tmp
-				#echo $val
-				#echo ${line[0]} | cut -d" " -f3
-				#if (( ${line[0]} | cut -d" " -f3 > "$2" )); then
-				#	tmp="Winner"			
-				#fi
 			fi
-			#echo $line	
 		done < ${file[0]}
 		echo ${file[6]} $wol
 	done
 }
 
-
 visitor_for_room "$1" "$2" | xyz "$1" | zyx "$3"
-
-
-#if [[ -d "$1" ]]; then
-#	from="$1"/visitors.txt			
-#else
-#	echo "No such room!"	
-#fi
