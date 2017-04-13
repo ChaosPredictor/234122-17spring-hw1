@@ -3,7 +3,7 @@ function search_file {
 	n=1
 	while read line; do
 		if [[ $line = *"$1"* ]]; then
-			echo “${2} : ${n} : $line”
+			echo ${2} : ${n} : $line
 		fi
 		let n++;
 	done < "$2"
