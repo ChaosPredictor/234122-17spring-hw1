@@ -5,18 +5,9 @@ b="not"
 if [[ -d "$1" ]]; then
 	from="$1"/visitors.txt			
 	while read line ; do
-		#echo $line		
-		#user=$line 
-		#$line | cut -d" " -f3
-		#echo ${tmp[*]}
 		if [[ $line = *"$2" ]]; then
 			echo $line | cut -d" " -f1,2
 		fi
-		#if ((  $# == 2 )); then 
-		#	if (( counter >= $2 )); then
-		#		exit
-		#	fi
-		#fi		
 	done < $from | sort -nk2
 else
 	echo "No such room!"	
