@@ -5,26 +5,8 @@ function challenges_of_visitors_counter {
 		win=`visitor_challenges "$1" $name "$2" | grep Winner | wc -l`
 		los=`visitor_challenges "$1" $name "$2" | grep Loser | wc -l`
 		total=`visitor_challenges "$1" $name "$2" | wc -l`
-		#tmp=$t | wc -l	
 		echo $name $win $los $total
 	done 
 }
-
-
-
-#function zyx {
-#	while read -a file; do
-#		wol="Loser"		
-#		while read line; do
-#			tmp=${line[0]}	
-#			if [[ $tmp == "overall time:"* ]]; then 
-#				if (( `echo ${tmp[0]} | cut -d" " -f3` < "$1" )); then
-#					wol="Winner"
-#				fi	
-#			fi
-#		done < ${file[0]}
-#		echo ${file[6]} $wol
-#	done
-#}
 
 last_visitors "$1" | challenges_of_visitors_counter "$1" "$2" | sort -k1 | sort -rnsk4 | cut -d" " -f1-3
