@@ -20,7 +20,7 @@ function zyx {
 			if [[ $tmp == "overall time:"* ]]; then 
 				#echo ${line[0]}
 				#echo ${tmp[0]} | cut -d" " -f3
-				if (( `echo ${tmp[0]} | cut -d" " -f3` > 45 )); then
+				if (( `echo ${tmp[0]} | cut -d" " -f3` < "$1" )); then
 					wol="Winner"
 				fi	
 				#returnOverallTime $tmp
