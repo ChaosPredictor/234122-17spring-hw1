@@ -11,6 +11,17 @@ function challenges_of_visitors_counter {
 
 #last_visitors "$1" | challenges_of_visitors_counter "$1" "$2" | sort -k1 | sort -rnsk4 | cut -d" " -f1-3
 
-while read -a name; do
-	echo $name			
-done < "$2:"
+function visitor_rooms {
+	for f in ./*; do
+		#echo f		
+		if [[ -d $f ]]; then
+			echo $f	
+		fi
+	done
+}
+
+for name in ${*:2}; do
+	echo $name
+	visitor_rooms
+done
+
