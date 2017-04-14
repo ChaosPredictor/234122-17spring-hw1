@@ -1,7 +1,5 @@
 #1/bin/bash
 
-a="their is"
-b="not"
 if [[ -d "$1" ]]; then
 	from="$1"/visitors.txt			
 	while read line ; do
@@ -9,6 +7,4 @@ if [[ -d "$1" ]]; then
 			echo $line | cut -d" " -f1,2
 		fi
 	done < $from | sort -nk2
-else
-	echo "No such room!"	
 fi
