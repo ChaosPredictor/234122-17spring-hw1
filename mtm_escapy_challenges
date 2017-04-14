@@ -1,0 +1,16 @@
+#1/bin/bash
+
+function challenges_of_visitors_counter {
+	while read name; do
+		win=`visitor_challenges "$1" $name "$2" | grep Winner | wc -l`
+		los=`visitor_challenges "$1" $name "$2" | grep Loser | wc -l`
+		total=`visitor_challenges "$1" $name "$2" | wc -l`
+		echo $name $win $los $total
+	done 
+}
+
+#last_visitors "$1" | challenges_of_visitors_counter "$1" "$2" | sort -k1 | sort -rnsk4 | cut -d" " -f1-3
+
+while read -a name; do
+	echo $name			
+done < "$2:"
