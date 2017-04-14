@@ -26,8 +26,18 @@ function visitor_rooms {
 	for f in ./*; do
 		if [[ -d $f ]]; then
 			#iroom= `$f | cut -c3-`
-			echo "	"`echo $f | cut -c3-`
-			room_challenges `echo $f | cut -c3-` threshold | visitor_room $visitor 
+			#echo "	"`echo $f | cut -c3-`
+			room=`echo $f | cut -c3-`
+			#echo $room
+			l=`room_challenges $room $threshold | visitor_room $visitor`
+			#echo $l
+			if (( `echo $l | wc -w` >= 1 )); then
+				result=`echo $l | cut -d" " -f2-`
+				echo "	"$room $result
+				#echo $l | wc -w
+			fi	
+			#echo $l
+			#room_challenges `echo $f | cut -c3-` threshold | visitor_room $visitor 
 		fi
 	done
 }
