@@ -11,17 +11,29 @@ function challenges_of_visitors_counter {
 
 #last_visitors "$1" | challenges_of_visitors_counter "$1" "$2" | sort -k1 | sort -rnsk4 | cut -d" " -f1-3
 
+function visitor_room {
+	visitor="$1"			
+	while read line; do
+		if [[ `echo $line | cut -d" " -f1` = $visitor ]]; then
+			echo $line
+		fi		
+	done
+}
+
 function visitor_rooms {
+	visitor="$1"
+	threshold="$2"
 	for f in ./*; do
-		#echo f		
 		if [[ -d $f ]]; then
-			echo $f	
+			#iroom= `$f | cut -c3-`
+			echo "	"`echo $f | cut -c3-`
+			room_challenges `echo $f | cut -c3-` threshold | visitor_room $visitor 
 		fi
 	done
 }
 
-for name in ${*:2}; do
-	echo $name
-	visitor_rooms
+for visitor in ${*:2}; do
+	echo $visitor
+	visitor_rooms $visitor "$1" 
 done
 
