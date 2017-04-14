@@ -1,5 +1,7 @@
 #1/bin/bash
 
+a="their is"
+b="not"
 if [[ -d "$1" ]]; then
 	from="$1"/visitors.txt			
 	counter=0;
@@ -12,4 +14,6 @@ if [[ -d "$1" ]]; then
 			fi
 		fi		
 	done < $from | sort -nrk2 | sort -sk3 | uniq -2 | sort -nrk2 | cut -d" " -f3
+else
+	echo $b			
 fi

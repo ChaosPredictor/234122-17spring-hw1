@@ -1,0 +1,31 @@
+#1/bin/bash
+
+function visitor_room {
+	visitor="$1"			
+	while read line; do
+		if [[ `echo $line | cut -d" " -f1` = $visitor ]]; then
+			echo $line
+		fi		
+	done
+}
+
+function visitor_rooms {
+	visitor="$1"
+	threshold="$2"
+	for f in ./*; do
+		if [[ -d $f ]]; then
+			room=`echo $f | cut -c3-`
+			l=`room_challenges $room $threshold | visitor_room $visitor`
+			if (( `echo $l | wc -w` >= 1 )); then
+				result=`echo $l | cut -d" " -f2-`
+				echo "	"$room: $result
+			fi	
+		fi
+	done
+}
+
+for visitor in ${*:2}; do
+	echo $visitor
+	visitor_rooms $visitor "$1" 
+done
+
