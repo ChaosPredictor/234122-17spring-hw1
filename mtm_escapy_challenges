@@ -33,7 +33,7 @@ function visitor_rooms {
 			#echo $l
 			if (( `echo $l | wc -w` >= 1 )); then
 				result=`echo $l | cut -d" " -f2-`
-				echo "	"$room $result
+				echo "	"$room: $result
 				#echo $l | wc -w
 			fi	
 			#echo $l
