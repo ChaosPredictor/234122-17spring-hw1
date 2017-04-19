@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 function challenges_of_visitors_counter {
 	while read name; do

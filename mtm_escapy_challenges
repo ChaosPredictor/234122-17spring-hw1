@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 function visitor_room {
 	visitor="$1"			
