@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 if [[ -d "$1" ]]; then
 	from="$1"/visitors.txt			
