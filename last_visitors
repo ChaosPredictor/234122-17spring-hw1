@@ -1,8 +1,7 @@
 #!/bin/bash
 
-function list {
+function vstList {
 	cat "$1"/visitors.txt
 }
 
-
-list "$1" | sort -nrk2 | sort -sk3 | uniq -2 | sort -nrk2 | cut -d" " -f3 | head -"$2"
+vstList "$1"|sort -nrk2|sort -sk3|uniq -2|sort -nrk2|cut -d" " -f3|head -"$2"

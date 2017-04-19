@@ -2,7 +2,7 @@
 
 function challenges {
 	while read -a line; do
-		search "visit id: ${line[1]}" "$1"/challenges/*.chg 
+		search_exact "visit id: ${line[1]}" "$1"/challenges/*.chg
 	done 
 }
 
@@ -21,4 +21,5 @@ function main {
 	done
 }
 
-visitor_for_room "$1" "$2" | challenges "$1" | main "$3"
+room="$1"
+visitor_for_room $room "$2" | challenges $room | main "$3"
