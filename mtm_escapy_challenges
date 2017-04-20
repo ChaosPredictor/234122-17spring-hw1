@@ -1,9 +1,10 @@
 #!/bin/bash
 
-function visitor_room {
-	visitor="$1"			
+function visitor_room {		
 	while read line; do
-		if [[ `echo $line | cut -d" " -f1` = $visitor ]]; then
+		fileName=$( echo "$fileLine" | cut -d" " -f1 )
+		visitor=$(echo $line | cut -d" " -f1)
+		if [[ $visitor = "$1" ]]; then
 			echo $line
 		fi		
 	done
@@ -14,10 +15,10 @@ function visitor_rooms {
 	threshold="$2"
 	for f in ./*; do
 		if [[ -d $f ]]; then
-			room=`echo $f | cut -c3-`
-			l=`room_challenges $room $threshold | visitor_room $visitor`
+			room=$(echo $f | cut -c3-)
+			l=$(room_challenges $room $threshold | visitor_room $visitor)
 			if (( `echo $l | wc -w` >= 1 )); then
-				result=`echo $l | cut -d" " -f2-`
+				result=$(echo $l | cut -d" " -f2-)
 				echo "	"$room: $result
 			fi	
 		fi

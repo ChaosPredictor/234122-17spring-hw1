@@ -1,25 +1,25 @@
 #!/bin/bash
 
-function challenges {
+function return_challenges {
 	while read -a line; do
 		search_exact "visit id: ${line[1]}" "$1"/challenges/*.chg
 	done 
 }
 
 function main {
-	while read -a file; do
-		wol="Loser"		
-		while read line; do
-			tmp=${line[0]}	
-			if [[ $tmp == "overall time:"* ]]; then 
-				if (( `echo ${tmp[0]} | cut -d" " -f3` < "$1" )); then
-					wol="Winner"
-				fi	
-			fi
-		done < ${file[0]}
-		echo ${file[6]} $wol
+	while read fileLine; do
+		fileName=$( echo "$fileLine" | cut -d" " -f1 )
+		time=$( cat "$fileName" | head -2 | tail -1 | cut -d" " -f3)
+		verdict="Loser"
+		if (( $time < "$1" )); then
+			verdict="Winner"
+		fi
+		visitId=$( echo "$fileLine" | cut -d" " -f7 )
+		echo $visitId $verdict
 	done
 }
 
+
+
 room="$1"
-visitor_for_room $room "$2" | challenges $room | main "$3"
+visitor_for_room $room "$2" | return_challenges $room | main "$3"
